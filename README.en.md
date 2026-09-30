@@ -153,4 +153,6 @@ Tests cover offline end-to-end runs, template changes, deduplication, recovery, 
 
 Contributions to extraction, adapters, templates, and recovery are welcome. Use fictional or reusable fixtures; never submit credentials, private source registries, or actual business data. See [Contributing](CONTRIBUTING.md).
 
-**License and release:** This is a local release candidate. The owner will select the license before it is added and before public release.
+**License:** [Apache-2.0](LICENSE). Use, modification, and commercial reuse are permitted under its conditions. Preserve the license and applicable notices when distributing, and identify modifications as required. See [NOTICE](NOTICE) and the full license text.
+
+**Repository:** [workstonedai-collab/global-knowledge-pipeline](https://github.com/workstonedai-collab/global-knowledge-pipeline).

@@ -13,4 +13,4 @@ python3 -m gkp validate examples/demo.json
 python3 -m gkp run examples/demo.json --workspace runtime/contribution-demo
 ```
 
-当前许可证由所有者确认后补入；公开贡献流程在正式发布后使用。 / The owner will add the selected license before release. Public contribution workflows apply after publication.
+项目采用 [Apache-2.0](LICENSE)。提交贡献时请确认你有权提供相关代码和素材，并保留适用声明。 / The project uses Apache-2.0. Ensure you have the right to contribute code and material, and preserve applicable notices.

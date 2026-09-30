@@ -6,7 +6,7 @@
 
 计划仓库 / Intended repository: `workstonedai-collab/global-knowledge-pipeline`
 
-状态 / Status: 本地实现与验收，许可证待选择；尚未创建公开仓库。 / Implemented and verified locally, license pending; no public repository created yet.
+状态 / Status: 本地实现与验收完成，所有者已选择 Apache-2.0；正在准备公开发布。 / Implemented and verified locally; owner selected Apache-2.0. Public publication is being prepared.
 
 ## 仓库主页介绍 / Proposed About description
 
@@ -29,11 +29,12 @@ GKN全球信息采集程序：网页/RSS与关键词发现→自定义AI字段�
 - Python 3.9 的提取与校验测试通过；完整流程与本机接口验证使用 Python 3.11。CI 矩阵已准备，尚未在 GitHub 执行。 / Extraction/validation tests passed on Python 3.9; the full suite ran on 3.11. CI is configured but has not run on GitHub.
 - 动态网页适配器是可选实现，尚未完成真实动态网站验收；真实付费搜索/模型服务没有调用。 / Browser adapter is optional and unaccepted against real dynamic sites; no real paid search/model service was called.
 - 已构建并安装 wheel；在项目目录以外通过安装后的命令完成验证、首次离线运行和恢复运行。 / Built and installed the wheel, then ran validation, a first offline run and a resumed run outside the project directory using the installed command.
-- 41 个跟踪文件的敏感模式检查无命中，运行目录未加入 Git；10 个 Markdown 文件的本地链接完整。 / No sensitive-pattern findings in 41 tracked files; runtime is not tracked. Local links in ten Markdown files resolve.
+- 最终 43 个跟踪文件的敏感模式检查无命中，运行目录未加入 Git；10 个 Markdown 文件的本地链接完整。 / No sensitive-pattern findings in 43 final tracked files; runtime is not tracked. Local links in ten Markdown files resolve.
+- Apache-2.0 的 LICENSE、NOTICE 及 SPDX 元数据已包含在重新构建的安装包中。 / Rebuilt installation package includes Apache-2.0 LICENSE, NOTICE and SPDX metadata.
 
 ## 公开前剩余步骤 / Remaining publication steps
 
-1. 所有者选择许可证，补入 LICENSE 与各语言文档。 / Owner selects the license; add its text and update guides.
+1. 已确认 Apache-2.0，已补入 LICENSE、NOTICE、包元数据与各语言文档。 / Apache-2.0 confirmed and added to LICENSE, NOTICE, package metadata and language guides.
 2. 对最终发布文件与新的 Git 历史再检查敏感信息。 / Recheck the final files and new history for sensitive material.
 3. 创建公开仓库、上传、设置双语介绍与主题，核对线上文件。 / Create the public repository, upload, set bilingual About/topics, and verify remote files.
 

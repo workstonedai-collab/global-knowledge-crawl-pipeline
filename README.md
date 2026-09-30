@@ -70,4 +70,6 @@ python3 -m gkp run examples/demo.json
 
 `validated` 表示通过程序的结构和证据摘录检查，不表示事实已被人工确认。普通网页提取不是对所有网站的支持承诺；可选浏览器适配器需要额外安装。原站原有内容更新、复杂分页、PDF 和已有复杂 Excel 文件回填不在当前版本范围内。 / `validated` means the record passed structural and excerpt checks, not human fact-checking. Basic HTML extraction does not guarantee compatibility with every site. The optional browser adapter requires additional installation. Refreshing changed content at existing URLs, general pagination, PDFs, and filling complex existing Excel workbooks are outside this release.
 
-**发布状态 / Release status:** 本地发布候选；许可证由项目所有者确认后补入，公开发布前完成最终检查。 / Local release candidate. The owner will select the license before public release and the final publication check.
+**许可证 / License:** [Apache-2.0](LICENSE) · [版权与来源声明 / Notices](NOTICE)
+
+**仓库 / Repository:** [workstonedai-collab/global-knowledge-pipeline](https://github.com/workstonedai-collab/global-knowledge-pipeline)

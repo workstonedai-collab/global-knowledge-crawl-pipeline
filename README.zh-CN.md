@@ -153,4 +153,6 @@ python3 -m unittest discover -s tests -v
 
 欢迎改进提取质量、适配器、模板和恢复逻辑。请使用虚构或可再使用样例，不提交凭据、私有来源清单或真实业务数据。见 [贡献指南](CONTRIBUTING.md)。
 
-**许可证与发布**：当前为本地发布候选，许可证待所有者选择后补入。公开仓库发布前完成最终许可与文件检查。
+**许可证**：[Apache-2.0](LICENSE)。允许在遵守许可证条件的前提下使用、修改与商业复用。分发时请保留许可证与相关声明，并按要求标明修改；详见 [NOTICE](NOTICE) 和许可证全文。
+
+**项目仓库**：[workstonedai-collab/global-knowledge-pipeline](https://github.com/workstonedai-collab/global-knowledge-pipeline)。
