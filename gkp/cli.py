@@ -15,7 +15,7 @@ def main(argv=None):
     for stream in (sys.stdout, sys.stderr):
         if hasattr(stream, "reconfigure"):
             stream.reconfigure(encoding="utf-8", errors="backslashreplace")
-    parser = argparse.ArgumentParser(description="Global Knowledge Pipeline (by GKN) | GKN全球信息采集程序")
+    parser = argparse.ArgumentParser(description="Global Knowledge Crawl Pipeline (by GKN) | GKN全球信息采集程序")
     parser.add_argument("--version", action="version", version=__version__)
     subs = parser.add_subparsers(dest="command", required=True)
     for name in ("run", "validate", "export"):

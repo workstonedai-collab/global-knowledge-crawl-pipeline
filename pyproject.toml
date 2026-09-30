@@ -3,9 +3,9 @@ requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "global-knowledge-pipeline"
-version = "0.1.0"
-description = "Global Knowledge Pipeline (by GKN): configurable discovery, collection, AI enrichment, and table export"
+name = "global-knowledge-crawl-pipeline"
+version = "0.1.1"
+description = "Global Knowledge Crawl Pipeline (by GKN): configurable discovery, collection, AI enrichment, and table export"
 requires-python = ">=3.9"
 authors = [{name = "GKN"}]
 license = "Apache-2.0"

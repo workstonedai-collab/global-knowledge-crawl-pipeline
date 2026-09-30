@@ -1,4 +1,4 @@
-# Global Knowledge Pipeline (by GKN)
+# Global Knowledge Crawl Pipeline (by GKN)
 # GKN全球信息采集程序
 
 这是一个简易但好用的网络信息追踪/爬取程序，既支持爬取给定的网址栏目链接，也支持根据给定的关键词自动进行互联网检索并爬取相应信息，爬取后支持接入额外API对信息写摘要、研判、打标签，检索也支持接入深度搜索类的API。
@@ -7,7 +7,7 @@
 
 如果你并不精通编程，可以直接丢给你的agent，让它帮你部署这个程序，你只需要根据你的agent引导提供网址链接、检索关键词、API密钥等，即可运行。
 
-Global Knowledge Pipeline is a simple but useful tool for tracking and crawling information on the web. It can crawl the website section or listing URLs you provide, or automatically search the internet using your keywords and collect the information it finds. After collection, you can connect additional APIs to generate summaries, analyze the information, and add tags. Search can also connect to deep-search APIs.
+Global Knowledge Crawl Pipeline is a simple but useful tool for tracking and crawling information on the web. It can crawl the website section or listing URLs you provide, or automatically search the internet using your keywords and collect the information it finds. After collection, you can connect additional APIs to generate summaries, analyze the information, and add tags. Search can also connect to deep-search APIs.
 
 Use it as part of an automated information monitoring workflow to track and collect online information and trending topics.
 
@@ -19,7 +19,7 @@ If you are not familiar with programming, you can give this project to your AI a
 
 **选择语言 / Choose your guide:** [完整中文说明](README.zh-CN.md) · [Full English guide](README.en.md)
 
-Python 3.9+ · 离线示例无需依赖或密钥 / Offline demo needs no dependencies or keys · v0.1.0
+Python 3.9+ · 离线示例无需依赖或密钥 / Offline demo needs no dependencies or keys · v0.1.1
 
 ## 从信息到表格 / From information to a table
 
@@ -84,4 +84,4 @@ python3 -m gkp run examples/demo.json
 
 **许可证 / License:** [Apache-2.0](LICENSE) · [版权与来源声明 / Notices](NOTICE)
 
-**仓库 / Repository:** [workstonedai-collab/global-knowledge-pipeline](https://github.com/workstonedai-collab/global-knowledge-pipeline)
+**仓库 / Repository:** [workstonedai-collab/global-knowledge-crawl-pipeline](https://github.com/workstonedai-collab/global-knowledge-crawl-pipeline)

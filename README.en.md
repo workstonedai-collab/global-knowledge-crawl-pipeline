@@ -1,7 +1,7 @@
-# Global Knowledge Pipeline (by GKN)
+# Global Knowledge Crawl Pipeline (by GKN)
 # GKN全球信息采集程序
 
-Global Knowledge Pipeline is a simple but useful tool for tracking and crawling information on the web. It can crawl the website section or listing URLs you provide, or automatically search the internet using your keywords and collect the information it finds. After collection, you can connect additional APIs to generate summaries, analyze the information, and add tags. Search can also connect to deep-search APIs.
+Global Knowledge Crawl Pipeline is a simple but useful tool for tracking and crawling information on the web. It can crawl the website section or listing URLs you provide, or automatically search the internet using your keywords and collect the information it finds. After collection, you can connect additional APIs to generate summaries, analyze the information, and add tags. Search can also connect to deep-search APIs.
 
 Use it as part of an automated information monitoring workflow to track and collect online information and trending topics.
 
@@ -9,7 +9,7 @@ If you are not familiar with programming, you can give this project to your AI a
 
 [Bilingual overview](README.md) · [中文](README.zh-CN.md)
 
-Keeping an information table up to date often means repeatedly visiting sites, searching keywords, copying article text, extracting fields, and deciding which findings are duplicates or need checking. **Global Knowledge Pipeline connects those steps: you define the sources, fields, and services; the program handles recurring intake and retains the processing trail.**
+Keeping an information table up to date often means repeatedly visiting sites, searching keywords, copying article text, extracting fields, and deciding which findings are duplicates or need checking. **Global Knowledge Crawl Pipeline connects those steps: you define the sources, fields, and services; the program handles recurring intake and retains the processing trail.**
 
 Use it for product developments, public policy, industry updates, or research material. A product template might collect a title, organization, update category, and summary. A policy template could collect the issuing body, effective date, affected groups, and policy summary.
 
@@ -163,4 +163,4 @@ Contributions to extraction, adapters, templates, and recovery are welcome. Use 
 
 **License:** [Apache-2.0](LICENSE). Use, modification, and commercial reuse are permitted under its conditions. Preserve the license and applicable notices when distributing, and identify modifications as required. See [NOTICE](NOTICE) and the full license text.
 
-**Repository:** [workstonedai-collab/global-knowledge-pipeline](https://github.com/workstonedai-collab/global-knowledge-pipeline).
+**Repository:** [workstonedai-collab/global-knowledge-crawl-pipeline](https://github.com/workstonedai-collab/global-knowledge-crawl-pipeline).

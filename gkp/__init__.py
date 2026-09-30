@@ -1,3 +1,3 @@
-"""Global Knowledge Pipeline (by GKN)."""
+"""Global Knowledge Crawl Pipeline (by GKN)."""
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"

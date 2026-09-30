@@ -6,23 +6,27 @@
 
 如果你并不精通编程，可以直接丢给你的agent，让它帮你部署这个程序，你只需要根据你的agent引导提供网址链接、检索关键词、API密钥等，即可运行。
 
-Global Knowledge Pipeline is a simple but useful tool for tracking and crawling information on the web. It can crawl the website section or listing URLs you provide, or automatically search the internet using your keywords and collect the information it finds. After collection, you can connect additional APIs to generate summaries, analyze the information, and add tags. Search can also connect to deep-search APIs.
+Global Knowledge Crawl Pipeline is a simple but useful tool for tracking and crawling information on the web. It can crawl the website section or listing URLs you provide, or automatically search the internet using your keywords and collect the information it finds. After collection, you can connect additional APIs to generate summaries, analyze the information, and add tags. Search can also connect to deep-search APIs.
 
 Use it as part of an automated information monitoring workflow to track and collect online information and trending topics.
 
 If you are not familiar with programming, you can give this project to your AI agent and ask it to deploy the program for you. Follow your agent's guidance to provide website URLs, search keywords, API credentials, and other configuration needed to run it.
 
-项目 / Project: **Global Knowledge Pipeline (by GKN)｜GKN全球信息采集程序**
+项目 / Project: **Global Knowledge Crawl Pipeline (by GKN)｜GKN全球信息采集程序**
 
-版本 / Version: **0.1.0**
+版本 / Version: **0.1.1**
 
-公开仓库 / Public repository: [workstonedai-collab/global-knowledge-pipeline](https://github.com/workstonedai-collab/global-knowledge-pipeline)
+公开仓库 / Public repository: [workstonedai-collab/global-knowledge-crawl-pipeline](https://github.com/workstonedai-collab/global-knowledge-crawl-pipeline)
 
 状态 / Status: 已公开，默认分支为 main，GitHub 已识别 Apache-2.0。 / Public, default branch main, Apache-2.0 recognized by GitHub.
 
+## 0.1.1 名称更新 / Naming update
+
+项目统一更名为 **Global Knowledge Crawl Pipeline (by GKN)**；仓库与安装包名称为 `global-knowledge-crawl-pipeline`。命令仍为 `gkp`，中文名仍为 GKN全球信息采集程序，处理功能不变。v0.1.0 的下载包保留为历史版本。 / The project is now **Global Knowledge Crawl Pipeline (by GKN)**, with repository and distribution name `global-knowledge-crawl-pipeline`. The `gkp` command and Chinese name remain the same; processing behavior is unchanged. v0.1.0 assets remain historical releases.
+
 ## 仓库主页介绍 / About description
 
-GKN全球信息采集程序：简易好用的网页栏目爬取与关键词检索工具，可接深度搜索和AI摘要、研判、标签API，融入自动化追踪，也可交给agent部署。 Global Knowledge Pipeline (by GKN): track web listings and keyword searches, connect deep-search and AI APIs for summaries, analysis and tags, automate information intake, and let your agent help deploy it.
+GKN全球信息采集程序：简易好用的网页栏目爬取与关键词检索工具，可接深度搜索和AI摘要、研判、标签API，融入自动化追踪，也可交给agent部署。 Global Knowledge Crawl Pipeline (by GKN): track web listings and keyword searches, connect deep-search and AI APIs for summaries, analysis and tags, automate information intake, and let your agent help deploy it.
 
 建议主题 / Suggested topics: `information-extraction`, `web-scraping`, `rss`, `keyword-search`, `data-pipeline`, `ai`, `structured-data`, `python`, `csv`, `excel`.
 
@@ -38,7 +42,7 @@ GKN全球信息采集程序：简易好用的网页栏目爬取与关键词检�
 - 首次离线演示：4 个候选，3 条输出，2 条 validated，1 条 needs_review，1 条正文重复；HTTP 请求为 0。 / First demo: four candidates, three output records, two validated, one review item, one exact-body duplicate, zero HTTP requests.
 - 相同模板再次运行：无新增候选，已保存结果不重复富化。 / Rerun: no new candidates and no repeated enrichment for persisted results.
 - CSV/Excel/JSONL 实际输出；Excel 由独立读取库读取，4 行、11 列，包括表头。 / Actual CSV/Excel/JSONL outputs; the workbook was read by an independent library with four rows and eleven columns including the header.
-- Python 3.9 的提取与校验测试通过；完整流程与本机接口验证使用 Python 3.11。GitHub 自动验证矩阵覆盖 Linux、Windows、macOS 与 Python 3.9/3.11/3.13，最新结果见 [Tests](https://github.com/workstonedai-collab/global-knowledge-pipeline/actions/workflows/tests.yml)。 / Extraction/validation tests passed on Python 3.9; the full local suite ran on 3.11. GitHub's matrix covers three systems and three Python versions; see Tests for the latest results.
+- Python 3.9 的提取与校验测试通过；完整流程与本机接口验证使用 Python 3.11。GitHub 自动验证矩阵覆盖 Linux、Windows、macOS 与 Python 3.9/3.11/3.13，最新结果见 [Tests](https://github.com/workstonedai-collab/global-knowledge-crawl-pipeline/actions/workflows/tests.yml)。 / Extraction/validation tests passed on Python 3.9; the full local suite ran on 3.11. GitHub's matrix covers three systems and three Python versions; see Tests for the latest results.
 - 动态网页适配器是可选实现，尚未完成真实动态网站验收；真实付费搜索/模型服务没有调用。 / Browser adapter is optional and unaccepted against real dynamic sites; no real paid search/model service was called.
 - 已构建并安装 wheel；在项目目录以外通过安装后的命令完成验证、首次离线运行和恢复运行。 / Built and installed the wheel, then ran validation, a first offline run and a resumed run outside the project directory using the installed command.
 - 最终 43 个跟踪文件的敏感模式检查无命中，运行目录未加入 Git；10 个 Markdown 文件的本地链接完整。 / No sensitive-pattern findings in 43 final tracked files; runtime is not tracked. Local links in ten Markdown files resolve.

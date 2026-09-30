@@ -1,4 +1,4 @@
-# Global Knowledge Pipeline (by GKN)
+# Global Knowledge Crawl Pipeline (by GKN)
 # GKN全球信息采集程序
 
 这是一个简易但好用的网络信息追踪/爬取程序，既支持爬取给定的网址栏目链接，也支持根据给定的关键词自动进行互联网检索并爬取相应信息，爬取后支持接入额外API对信息写摘要、研判、打标签，检索也支持接入深度搜索类的API。
@@ -165,4 +165,4 @@ python3 -m unittest discover -s tests -v
 
 **许可证**：[Apache-2.0](LICENSE)。允许在遵守许可证条件的前提下使用、修改与商业复用。分发时请保留许可证与相关声明，并按要求标明修改；详见 [NOTICE](NOTICE) 和许可证全文。
 
-**项目仓库**：[workstonedai-collab/global-knowledge-pipeline](https://github.com/workstonedai-collab/global-knowledge-pipeline)。
+**项目仓库**：[workstonedai-collab/global-knowledge-crawl-pipeline](https://github.com/workstonedai-collab/global-knowledge-crawl-pipeline)。
