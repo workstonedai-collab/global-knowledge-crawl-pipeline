@@ -42,14 +42,14 @@ class PipelineTests(unittest.TestCase):
         self.temp.cleanup()
 
     def configure(self, edit=None):
-        data = json.loads(self.config_path.read_text())
+        data = json.loads(self.config_path.read_text(encoding="utf-8"))
         if edit:
             edit(data)
         self.config_path.write_text(json.dumps(data), encoding="utf-8")
         return Config(self.config_path)
 
     def records(self):
-        return [json.loads(line) for line in (self.workspace / "output" / "records.jsonl").read_text().splitlines()]
+        return [json.loads(line) for line in (self.workspace / "output" / "records.jsonl").read_text(encoding="utf-8").splitlines()]
 
     def test_offline_end_to_end_keeps_provenance_review_and_duplicates(self):
         with patch("socket.getaddrinfo", side_effect=AssertionError("offline attempted DNS")):
@@ -76,10 +76,10 @@ class PipelineTests(unittest.TestCase):
     def test_changed_template_invalidates_only_contract_cache(self):
         run(self.configure(), self.workspace)
         template_path = self.root / "examples" / "product-template.json"
-        template = json.loads(template_path.read_text())
+        template = json.loads(template_path.read_text(encoding="utf-8"))
         template["version"] = "v2"
         template["fields"].append({"name": "source_url", "type": "string", "source": "metadata.url"})
-        template_path.write_text(json.dumps(template))
+        template_path.write_text(json.dumps(template), encoding="utf-8")
         report = run(self.configure(), self.workspace)
         self.assertEqual(report["budget"]["ai_calls"], 3)
         self.assertEqual(report["new_candidates"], 0)
@@ -101,20 +101,20 @@ class PipelineTests(unittest.TestCase):
 
     def test_custom_chinese_ai_fields_need_no_core_changes(self):
         template_path = self.root / "examples" / "product-template.json"
-        template = json.loads(template_path.read_text())
+        template = json.loads(template_path.read_text(encoding="utf-8"))
         for field in template["fields"]:
             if field["name"] == "title":
                 field["name"] = "标题"
             elif field["name"] == "summary":
                 field["name"] = "摘要"
-        template_path.write_text(json.dumps(template))
+        template_path.write_text(json.dumps(template), encoding="utf-8")
         fixture_path = self.root / "examples" / "fixtures" / "enrichment.json"
-        fixtures = json.loads(fixture_path.read_text())
+        fixtures = json.loads(fixture_path.read_text(encoding="utf-8"))
         for result in fixtures.values():
             result["fields"]["摘要"] = result["fields"].pop("summary")
             if "summary" in result["evidence"]:
                 result["evidence"]["摘要"] = result["evidence"].pop("summary")
-        fixture_path.write_text(json.dumps(fixtures))
+        fixture_path.write_text(json.dumps(fixtures), encoding="utf-8")
         report = run(self.configure(), self.workspace)
         self.assertEqual(report["counts"]["validated"], 2)
         self.assertIn("摘要", self.records()[0]["enrichment"]["fields"])
@@ -142,7 +142,7 @@ class PipelineTests(unittest.TestCase):
 
     def test_discovery_failure_does_not_advance_its_checkpoint(self):
         feed = self.root / "examples" / "fixtures" / "feed.xml"
-        feed.write_text("not XML")
+        feed.write_text("not XML", encoding="utf-8")
         config = self.configure()
         report = run(config, self.workspace)
         self.assertEqual(report["status"], "partial")
@@ -156,12 +156,12 @@ class PipelineTests(unittest.TestCase):
 
     def test_exhausted_fetch_can_be_explicitly_retried(self):
         fixture = self.root / "examples" / "fixtures" / "library.html"
-        original = fixture.read_text()
-        fixture.write_text("<p>tiny</p>")
+        original = fixture.read_text(encoding="utf-8")
+        fixture.write_text("<p>tiny</p>", encoding="utf-8")
         config = self.configure()
         report = run(config, self.workspace)
         self.assertEqual(report["counts"]["failed"], 1)
-        fixture.write_text(original)
+        fixture.write_text(original, encoding="utf-8")
         self.assertEqual(run(config, self.workspace)["counts"]["failed"], 1)
         report = run(config, self.workspace, retry_failed=True)
         self.assertEqual(report["counts"]["failed"], 0)
@@ -187,7 +187,7 @@ class PipelineTests(unittest.TestCase):
             self.configure(lambda d: d.update(enrichment={"provider": "http_json", "endpoint": "https://api.example.com/enrich"}))
 
     def test_cli_errors_do_not_echo_config_or_credentials(self):
-        self.config_path.write_text('{"secret": "synthetic-only"')
+        self.config_path.write_text('{"secret": "synthetic-only"', encoding="utf-8")
         output = io.StringIO()
         with redirect_stderr(output):
             self.assertEqual(main(["validate", str(self.config_path)]), 1)
@@ -313,7 +313,7 @@ class LocalApiTests(unittest.TestCase):
             {"name": "title", "type": "string", "source": "metadata.title", "required": True},
             {"name": "organization", "type": "string", "instruction": "Extract organization", "evidence_required": True},
             {"name": "summary", "type": "string", "instruction": "Summarize", "required": True, "evidence_required": True}]}
-        (self.root / "template.json").write_text(json.dumps(self.template))
+        (self.root / "template.json").write_text(json.dumps(self.template), encoding="utf-8")
         self.data = {"dataset": "local_test", "template": "template.json", "allow_private_network": True,
                      "sources": [{"id": "list", "type": "listing", "url": self.base + "/listing"}],
                      "search": {"provider": "http_json", "endpoint": self.base + "/search", "queries": ["service update"],
@@ -330,7 +330,7 @@ class LocalApiTests(unittest.TestCase):
 
     def config(self):
         path = self.root / "config.json"
-        path.write_text(json.dumps(self.data))
+        path.write_text(json.dumps(self.data), encoding="utf-8")
         return Config(path)
 
     def execute(self, **kwargs):
