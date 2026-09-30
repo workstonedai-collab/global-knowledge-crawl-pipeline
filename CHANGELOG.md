@@ -1,5 +1,9 @@
 # Changelog / 更新记录
 
+## Unreleased / 未发布
+
+- Expanded the opening introductions in Chinese and English, including agent-assisted deployment and deep-search API configuration. / 扩充中英文开篇介绍，说明可由 agent 协助部署，以及深度搜索 API 的接入方式。
+
 ## 0.1.0 — initial release / 首个版本
 
 - Website/listing/RSS/Atom discovery and configurable HTTP keyword search.

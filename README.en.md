@@ -1,6 +1,12 @@
 # Global Knowledge Pipeline (by GKN)
 # GKN全球信息采集程序
 
+Global Knowledge Pipeline is a simple but useful tool for tracking and crawling information on the web. It can crawl the website section or listing URLs you provide, or automatically search the internet using your keywords and collect the information it finds. After collection, you can connect additional APIs to generate summaries, analyze the information, and add tags. Search can also connect to deep-search APIs.
+
+Use it as part of an automated information monitoring workflow to track and collect online information and trending topics.
+
+If you are not familiar with programming, you can give this project to your AI agent and ask it to deploy the program for you. Follow your agent's guidance to provide website URLs, search keywords, API credentials, and other configuration needed to run it.
+
 [Bilingual overview](README.md) · [中文](README.zh-CN.md)
 
 Keeping an information table up to date often means repeatedly visiting sites, searching keywords, copying article text, extracting fields, and deciding which findings are duplicates or need checking. **Global Knowledge Pipeline connects those steps: you define the sources, fields, and services; the program handles recurring intake and retains the processing trail.**
@@ -88,6 +94,8 @@ Excel output is a newly generated, single-sheet workbook with a frozen header an
 ## Connect your sources and APIs
 
 Copy [live.example.json](examples/live.example.json) and replace sources, service endpoints, and the model. Search responses can use your provider's structure: map their result array and fields with `items_path` and `fields`.
+
+Deep-search APIs can use the same search adapter: configure the request parameters and map returned web results to URLs, titles, and snippets. Services requiring asynchronous polling or custom signing, or returning only a research report without web results, need additional adapter logic.
 
 | Enrichment adapter | Use |
 | --- | --- |

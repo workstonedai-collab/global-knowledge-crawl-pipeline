@@ -1,6 +1,18 @@
 # Global Knowledge Pipeline (by GKN)
 # GKN全球信息采集程序
 
+这是一个简易但好用的网络信息追踪/爬取程序，既支持爬取给定的网址栏目链接，也支持根据给定的关键词自动进行互联网检索并爬取相应信息，爬取后支持接入额外API对信息写摘要、研判、打标签，检索也支持接入深度搜索类的API。
+
+它适合接入自动化信息追踪流程和机制中，辅助你追踪和收集互联网信息和热点。
+
+如果你并不精通编程，可以直接丢给你的agent，让它帮你部署这个程序，你只需要根据你的agent引导提供网址链接、检索关键词、API密钥等，即可运行。
+
+Global Knowledge Pipeline is a simple but useful tool for tracking and crawling information on the web. It can crawl the website section or listing URLs you provide, or automatically search the internet using your keywords and collect the information it finds. After collection, you can connect additional APIs to generate summaries, analyze the information, and add tags. Search can also connect to deep-search APIs.
+
+Use it as part of an automated information monitoring workflow to track and collect online information and trending topics.
+
+If you are not familiar with programming, you can give this project to your AI agent and ask it to deploy the program for you. Follow your agent's guidance to provide website URLs, search keywords, API credentials, and other configuration needed to run it.
+
 **把分散的网页、订阅源和关键词搜索，整理成你自己的信息表。** 配置来源、目标字段和服务接口，程序会发现候选、提取正文、合并重复内容，再按字段要求进行 AI 富化，输出带来源和复核状态的 CSV、Excel 或 JSONL。
 
 **Turn scattered websites, feeds, and keyword searches into your own information table.** Configure your sources, desired fields, and service endpoints. The pipeline discovers candidates, extracts article text, merges exact duplicates, enriches records with your chosen AI service, and exports CSV, Excel, or JSONL with provenance and review status.

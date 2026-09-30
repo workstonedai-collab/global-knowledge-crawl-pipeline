@@ -10,6 +10,8 @@ API 重定向被拒绝，以避免认证头被转发到另一个服务。返回�
 
 ## 搜索 / Search
 
+关键词搜索和深度搜索类 API 均通过下面的 HTTP JSON 适配器配置。服务应返回可映射的网页结果数组，至少包含 URL；若需要异步任务轮询、特殊签名，或只有研究报告而没有网页结果，需要扩展适配逻辑。 / Configure keyword-search and deep-search APIs through the HTTP JSON adapter below. The service should return a mappable array of web results with at least a URL. Asynchronous job polling, custom signing, or report-only responses without web results require additional adapter logic.
+
 ```json
 {
   "provider": "http_json",
