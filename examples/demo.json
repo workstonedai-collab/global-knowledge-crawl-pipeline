@@ -1,0 +1,22 @@
+{
+  "dataset": "fictional_updates",
+  "offline": true,
+  "template": "product-template.json",
+  "sources": [
+    {"id": "public-list", "name": "Fictional public listing", "type": "listing", "url": "https://example.com/updates", "fixture": "fixtures/listing.html", "include_pattern": "/news/"},
+    {"id": "public-feed", "name": "Fictional RSS feed", "type": "rss", "url": "https://example.com/feed.xml", "fixture": "fixtures/feed.xml", "keywords": ["library"]}
+  ],
+  "search": {"provider": "fixture", "name": "Simulated keyword search", "queries": ["public product updates"], "fixture": "fixtures/search.json"},
+  "fetch": {
+    "provider": "http",
+    "fixtures": {
+      "https://example.com/news/lamp": "fixtures/lamp.html",
+      "https://example.com/news/library": "fixtures/library.html",
+      "https://example.net/news/lamp-copy": "fixtures/lamp.html",
+      "https://example.org/news/battery": "fixtures/battery.html"
+    }
+  },
+  "enrichment": {"provider": "fixture", "fixture": "fixtures/enrichment.json"},
+  "limits": {"max_items": 20, "max_search_requests": 5, "max_ai_calls": 10, "max_total_tokens": 100000},
+  "output_formats": ["csv", "xlsx", "jsonl"]
+}

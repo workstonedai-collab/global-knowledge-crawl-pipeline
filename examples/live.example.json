@@ -1,0 +1,25 @@
+{
+  "dataset": "my_public_updates",
+  "offline": false,
+  "template": "product-template.json",
+  "sources": [
+    {"id": "my-feed", "type": "rss", "url": "https://example.com/feed.xml", "keywords": ["product", "release"]},
+    {"id": "my-list", "type": "listing", "url": "https://example.com/updates", "include_pattern": "/news/", "allow_external": false}
+  ],
+  "search": {
+    "provider": "http_json", "name": "My search service", "endpoint": "https://api.example.com/search", "method": "POST",
+    "credential_env": "GKP_SEARCH_API_KEY", "auth_header": "Authorization", "auth_prefix": "Bearer ",
+    "queries": ["public product updates"],
+    "request": {"query": "$query", "since": "$since", "limit": "$limit"},
+    "response": {"items_path": "results", "fields": {"url": "url", "title": "title", "snippet": "description", "published_at": "published_at"}}
+  },
+  "fetch": {"provider": "http", "respect_robots": true, "timeout_seconds": 20, "min_text_chars": 40},
+  "enrichment": {
+    "provider": "chat_completions", "endpoint": "https://api.example.com/v1/chat/completions",
+    "credential_env": "GKP_ENRICH_API_KEY", "model": "your-model-name", "json_mode": true,
+    "max_text_chars": 12000, "parameters": {"temperature": 0}
+  },
+  "incremental_overlap_hours": 24,
+  "limits": {"max_items": 20, "max_search_requests": 5, "max_ai_calls": 10, "max_http_requests": 100, "max_total_tokens": 100000, "max_output_tokens": 1200, "max_attempts": 3},
+  "output_formats": ["csv", "xlsx", "jsonl"]
+}

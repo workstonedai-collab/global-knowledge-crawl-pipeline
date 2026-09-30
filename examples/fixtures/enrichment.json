@@ -1,0 +1,14 @@
+{
+  "https://example.com/news/lamp": {
+    "fields": {"organization": "Nova Workshop", "category": "proposal", "summary": "Nova Workshop 提出了可维修台灯方案，包含可更换零件，尚未宣布发布日期。"},
+    "evidence": {"organization": ["Nova Workshop proposed a repairable desk lamp"], "category": ["proposed a repairable desk lamp"], "summary": ["The proposal includes replaceable parts, but a release date has not been announced."]}
+  },
+  "https://example.com/news/library": {
+    "fields": {"organization": "Harbor Library", "category": "service_update", "summary": "Harbor Library 宣布试行四周的周六延长开放时间，常规开放时间尚未改变。"},
+    "evidence": {"organization": ["Harbor Library announced"], "category": ["a four-week trial of longer opening hours"], "summary": ["The trial will run on Saturdays only; permanent opening hours have not changed."]}
+  },
+  "https://example.org/news/battery": {
+    "fields": {"organization": "Field Lab", "category": "research", "summary": null},
+    "evidence": {"organization": ["Field Lab reported an early battery experiment"], "category": ["an early battery experiment under laboratory conditions"]}
+  }
+}

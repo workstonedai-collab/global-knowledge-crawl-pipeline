@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "global-knowledge-pipeline"
+version = "0.1.0"
+description = "Global Knowledge Pipeline (by GKN): configurable discovery, collection, AI enrichment, and table export"
+requires-python = ">=3.9"
+authors = [{name = "GKN"}]
+dependencies = []
+
+[project.optional-dependencies]
+yaml = ["PyYAML>=6,<7"]
+browser = ["playwright>=1.40,<2"]
+
+[project.scripts]
+gkp = "gkp.cli:main"
+
+[tool.setuptools]
+packages = ["gkp"]

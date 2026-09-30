@@ -1,0 +1,9 @@
+{
+  "version": "product-updates-v1",
+  "fields": [
+    {"name": "title", "type": "string", "source": "metadata.title", "required": true},
+    {"name": "organization", "type": "string", "instruction": "Extract the explicitly named organization. Return null if unknown.", "evidence_required": true},
+    {"name": "category", "type": "string", "instruction": "Classify the update. Use proposal for unconfirmed proposals rather than a completed launch.", "enum": ["product_launch", "proposal", "service_update", "research"], "required": true, "evidence_required": true},
+    {"name": "summary", "type": "string", "instruction": "Write a concise Chinese summary. Preserve proposals, conditions, quantities and uncertainty.", "required": true, "evidence_required": true}
+  ]
+}

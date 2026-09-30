@@ -1,0 +1,10 @@
+{
+  "version": "public-policy-v1",
+  "fields": [
+    {"name": "title", "type": "string", "source": "metadata.title", "required": true},
+    {"name": "issuing_body", "type": "string", "instruction": "Name the public body that issued the document; return null when absent.", "evidence_required": true},
+    {"name": "effective_date", "type": "string", "instruction": "Extract the explicitly stated effective date. Distinguish a proposal from an enacted measure; return null when unspecified.", "evidence_required": true},
+    {"name": "affected_groups", "type": "array", "items_type": "string", "instruction": "List explicitly stated affected groups.", "evidence_required": true},
+    {"name": "summary", "type": "string", "instruction": "Summarize in Chinese without converting a proposal or trial into an established rule.", "required": true, "evidence_required": true}
+  ]
+}

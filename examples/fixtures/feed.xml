@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel><title>Fictional public feed</title><link>https://example.com/</link><description>Self-authored demonstration</description>
+<item><title>Harbor Library trials longer opening hours</title><link>https://example.com/news/library</link><pubDate>Sun, 11 Jan 2026 10:00:00 GMT</pubDate><description>Library opening-hours trial</description></item>
+<item><title>Unrelated sports update</title><link>https://example.com/sports</link><description>Filtered by keyword</description></item>
+</channel></rss>

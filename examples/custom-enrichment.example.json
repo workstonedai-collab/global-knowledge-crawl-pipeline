@@ -1,0 +1,11 @@
+{
+  "provider": "http_json",
+  "endpoint": "https://api.example.com/enrich",
+  "method": "POST",
+  "credential_env": "GKP_ENRICH_API_KEY",
+  "auth_header": "X-API-Key",
+  "auth_prefix": "",
+  "request": {"document": "$text", "output_schema": "$schema", "instructions": "$prompt", "source_url": "$url", "max_tokens": "$max_output_tokens"},
+  "response_path": "data.result",
+  "usage_path": "data.usage.total_tokens"
+}

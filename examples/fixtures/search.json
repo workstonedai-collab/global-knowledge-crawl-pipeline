@@ -1,0 +1,7 @@
+{
+  "public product updates": [
+    {"url": "https://example.com/news/lamp?utm_source=search", "title": "Nova Workshop proposes a repairable lamp", "snippet": "A proposal with no confirmed release date.", "published_at": "2026-01-10T09:00:00Z"},
+    {"url": "https://example.net/news/lamp-copy", "title": "Mirror of the fictional lamp proposal", "snippet": "Same article body at another URL."},
+    {"url": "https://example.org/news/battery", "title": "Field Lab reports an early battery experiment", "snippet": "Laboratory findings with uncertain real-world applicability."}
+  ]
+}
