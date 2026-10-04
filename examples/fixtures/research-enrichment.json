@@ -1,0 +1,20 @@
+{
+  "https://example.org/research/trial": {
+    "fields": {
+      "organization": "Fictional Field Lab",
+      "finding": "虚构实验室报告了储能早期实验结果，仅限实验室条件。",
+      "limitations": "样本仅12个原型，结果尚未独立复现，未宣布商业上市。"
+    },
+    "evidence": {
+      "organization": [
+        "Fictional Field Lab"
+      ],
+      "finding": [
+        "an early storage experiment under laboratory conditions"
+      ],
+      "limitations": [
+        "The sample includes only twelve prototypes. Results have not been independently replicated and no commercial launch is announced."
+      ]
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "dataset": "fictional_policy",
+  "offline": true,
+  "template": "policy-template.json",
+  "sources": [
+    {
+      "id": "policy",
+      "type": "url",
+      "url": "https://example.com/notices/trial"
+    }
+  ],
+  "fetch": {
+    "provider": "http",
+    "fixtures": {
+      "https://example.com/notices/trial": "fixtures/policy.html"
+    }
+  },
+  "enrichment": {
+    "provider": "fixture",
+    "fixture": "fixtures/policy-enrichment.json"
+  },
+  "limits": {
+    "max_items": 10,
+    "max_ai_calls": 5
+  },
+  "output_formats": [
+    "csv",
+    "xlsx",
+    "jsonl"
+  ]
+}

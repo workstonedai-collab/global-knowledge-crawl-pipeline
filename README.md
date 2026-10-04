@@ -19,7 +19,22 @@ If you are not familiar with programming, you can give this project to your AI a
 
 **选择语言 / Choose your guide:** [完整中文说明](README.zh-CN.md) · [Full English guide](README.en.md)
 
-Python 3.9+ · 离线示例无需依赖或密钥 / Offline demo needs no dependencies or keys · v0.1.1
+Python 3.9+ · 离线示例无需依赖或密钥 / Offline demo needs no dependencies or keys · v0.2.0
+
+## 新增：更快配置，更容易复核 / New: configure faster, review clearly
+
+- **本地配置器 / Local configuration builder**：在浏览器中选来源、关键词和字段，下载配置与模板。无需先手写 JSON。 / Choose sources, keywords and fields in a browser and download your configuration and schema.
+- **同址更新追踪 / Updates at existing URLs**：显式重新检查已保存的网址，只对变化正文重新富化；保存前后文本差异。 / Explicitly revisit saved URLs, enrich changed text, and retain before/after differences.
+- **可读的证据页 / Readable evidence report**：打开本地 HTML 查看字段、原文摘录、复核原因和网页变化。 / Open a local HTML report to review fields, excerpts, review reasons and page changes.
+
+```bash
+python3 -m gkp configure --output runtime/configure.html
+# 在浏览器中打开生成的文件 / Open the generated file in your browser
+```
+
+配置器不会调用网络，也不要求输入密钥。生成文件需要你填入实际可用的服务地址、模型，并在运行环境中设置凭据。 / The builder makes no network requests and asks for no keys. Supply working service endpoints and a model, then set credentials in your runtime environment.
+
+[配置器使用说明 / Builder guide](docs/configuration-builder.md) · [三种离线场景 / Three offline scenarios](examples/README.md)
 
 ## 从信息到表格 / From information to a table
 
@@ -62,7 +77,7 @@ python3 -m gkp run examples/demo.json
 
 第二次运行复用已保存的富化结果，模拟 AI 调用次数为 0。示例故意保留一条缺少摘要的记录，让你看到复核队列如何工作。 / The second run reuses persisted enrichment results and makes zero simulated AI calls. One record deliberately lacks a summary so you can inspect the review queue.
 
-打开 `runtime/fictional_updates/output/table.xlsx` 查看表格；`records.jsonl` 保留正文、证据和处理信息，`run-report.json` 解释本次运行结果。 / Open `runtime/fictional_updates/output/table.xlsx` for the table. `records.jsonl` retains article text, evidence, and processing metadata; `run-report.json` explains the run.
+打开 `runtime/fictional_updates/output/table.xlsx` 查看表格；`records.jsonl` 保留正文、证据和处理信息，`run-report.json` 解释本次运行结果；`evidence.html` 展示字段与原文摘录，`changes.json` 保存已检测的正文变化。 / Open `runtime/fictional_updates/output/table.xlsx` for the table. `records.jsonl` retains article text, evidence, and processing metadata; `run-report.json` explains the run; `evidence.html` presents fields and excerpts, and `changes.json` retains detected text changes.
 
 ## 从演示到实际使用 / Move from demo to your workflow
 
@@ -80,7 +95,7 @@ python3 -m gkp run examples/demo.json
 - [架构与扩展 / Architecture and extension points](docs/architecture.md)
 - [贡献 / Contributing](CONTRIBUTING.md)
 
-`validated` 表示通过程序的结构和证据摘录检查，不表示事实已被人工确认。普通网页提取不是对所有网站的支持承诺；可选浏览器适配器需要额外安装。原站原有内容更新、复杂分页、PDF 和已有复杂 Excel 文件回填不在当前版本范围内。 / `validated` means the record passed structural and excerpt checks, not human fact-checking. Basic HTML extraction does not guarantee compatibility with every site. The optional browser adapter requires additional installation. Refreshing changed content at existing URLs, general pagination, PDFs, and filling complex existing Excel workbooks are outside this release.
+`validated` 表示通过程序的结构和证据摘录检查，不表示事实已被人工确认。普通网页提取不是对所有网站的支持承诺；可选浏览器适配器需要额外安装。同址更新通过 `--refresh-existing` 显式开启；复杂分页、PDF 和已有复杂 Excel 文件回填不在当前版本范围内。 / `validated` means the record passed structural and excerpt checks, not human fact-checking. Basic HTML extraction does not guarantee compatibility with every site. The optional browser adapter requires additional installation. Use `--refresh-existing` to revisit saved URLs. General pagination, PDFs, and filling complex existing Excel workbooks are outside this release.
 
 **许可证 / License:** [Apache-2.0](LICENSE) · [版权与来源声明 / Notices](NOTICE)
 

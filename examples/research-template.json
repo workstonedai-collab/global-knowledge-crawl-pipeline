@@ -1,0 +1,31 @@
+{
+  "version": "public-research-v1",
+  "fields": [
+    {
+      "name": "title",
+      "type": "string",
+      "source": "metadata.title",
+      "required": true
+    },
+    {
+      "name": "organization",
+      "type": "string",
+      "instruction": "Name the explicitly stated research organization.",
+      "evidence_required": true
+    },
+    {
+      "name": "finding",
+      "type": "string",
+      "instruction": "Describe the reported finding, preserving its preliminary status.",
+      "required": true,
+      "evidence_required": true
+    },
+    {
+      "name": "limitations",
+      "type": "string",
+      "instruction": "Quote explicitly stated limitations; do not invent missing context.",
+      "required": true,
+      "evidence_required": true
+    }
+  ]
+}

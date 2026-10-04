@@ -18,6 +18,8 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description="Global Knowledge Crawl Pipeline (by GKN) | GKN全球信息采集程序")
     parser.add_argument("--version", action="version", version=__version__)
     subs = parser.add_subparsers(dest="command", required=True)
+    configure = subs.add_parser("configure", help="Write an offline bilingual configuration builder")
+    configure.add_argument("--output", type=Path, default=Path("runtime/configure.html"))
     for name in ("run", "validate", "export"):
         command = subs.add_parser(name)
         command.add_argument("config", help="JSON config, or YAML with the yaml extra installed")
@@ -26,9 +28,15 @@ def main(argv=None):
         if name == "run":
             command.add_argument("--retry-failed", action="store_true", help="Reset exhausted or permanent failures for this contract")
             command.add_argument("--retry-review", action="store_true", help="Discard only current needs_review results and request them again")
+            command.add_argument("--refresh-existing", action="store_true", help="Check saved URLs again; re-enrich only changed text")
             command.add_argument("--no-discovery", action="store_true", help="Process saved candidates without discovering new ones")
     args = parser.parse_args(argv)
     try:
+        if args.command == "configure":
+            from .preview import write_configurator
+            write_configurator(args.output)
+            print("Open in your browser: " + str(args.output.resolve()))
+            return 0
         config = Config(args.config)
         if args.command == "validate":
             print(json.dumps({"valid": True, "dataset": config.dataset, "offline": config.offline, "template_signature": config.signature}))
@@ -37,7 +45,7 @@ def main(argv=None):
         if args.command == "export":
             report = export_only(config, workspace)
         else:
-            report = run(config, workspace, retry_failed=args.retry_failed, retry_review=args.retry_review, discover=not args.no_discovery)
+            report = run(config, workspace, retry_failed=args.retry_failed, retry_review=args.retry_review, discover=not args.no_discovery, refresh_existing=args.refresh_existing)
         print(json.dumps(report, ensure_ascii=False, indent=2))
         if args.command == "export":
             return 0

@@ -107,6 +107,10 @@ def export_records(state, config, directory: Path):
     write_json(directory / "review.json", [record for record in records if record["status"] == "needs_review"])
     write_json(directory / "failures.json", [{"id": record["id"], "url": record["metadata"]["url"], "issues": record["issues"]} for record in records if record["status"] == "failed"])
     write_json(directory / "duplicates.json", duplicates)
+    changes = state.changes()
+    write_json(directory / "changes.json", changes)
+    from .preview import evidence_report
+    atomic_write(directory / "evidence.html", lambda p: p.write_text(evidence_report(records, changes), encoding="utf-8"))
     return {"records": len(records), "validated": sum(r["status"] == "validated" for r in records),
             "needs_review": sum(r["status"] == "needs_review" for r in records), "failed": sum(r["status"] == "failed" for r in records),
             "pending": sum(r["status"] == "pending" for r in records), "duplicates": len(duplicates)}
