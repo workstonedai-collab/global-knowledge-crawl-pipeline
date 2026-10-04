@@ -1,0 +1,31 @@
+{
+  "dataset": "fictional_research",
+  "offline": true,
+  "template": "research-template.json",
+  "sources": [
+    {
+      "id": "research",
+      "type": "url",
+      "url": "https://example.org/research/trial"
+    }
+  ],
+  "fetch": {
+    "provider": "http",
+    "fixtures": {
+      "https://example.org/research/trial": "fixtures/research.html"
+    }
+  },
+  "enrichment": {
+    "provider": "fixture",
+    "fixture": "fixtures/research-enrichment.json"
+  },
+  "limits": {
+    "max_items": 10,
+    "max_ai_calls": 5
+  },
+  "output_formats": [
+    "csv",
+    "xlsx",
+    "jsonl"
+  ]
+}

@@ -44,7 +44,13 @@ python3 -m gkp run examples/demo.json --workspace runtime/demo --retry-review
 
 未知时区、未知发布时间不用于时间过滤；记录保持未知。搜索提供者可能不支持时间参数，单次响应和无分页限制也可能导致漏收。 / Unknown times/zones are not used for date cutoffs. Search capability and the single-response/no-pagination limit can cause misses.
 
-当前记录标识基于规范化 URL；相同 URL 的网页更新不会自动生成新版本。新的模板签名重新使用已保存的正文，不等于重新抓取网页。 / Identity is based on canonical URL. Content updates at the same URL do not create a new version automatically. A new schema reuses stored text rather than refreshing the page.
+记录标识基于规范化 URL。默认复用已存正文；使用 `--refresh-existing` 重新检查。规范化正文改变时保存前后文本与哈希，删除该记录旧的富化缓存，按当前模板重新富化。只改变空白不视为新版本，保留原始正文以维持已有引用的精确匹配。 / Identity is based on canonical URL. Use `--refresh-existing` to revisit stored text. A normalized-text change saves the before/after text and hashes, invalidates that record's old enrichment and enriches under the current schema. Whitespace-only differences retain the original text so cached exact quotes remain valid.
+
+刷新失败保留之前的结果，并在运行报告 `discovery_errors` 的 `stage: refresh` 项中记录；有任何刷新失败时运行状态为 partial。`refreshed_this_run` 表示成功检查数量，`changed_this_run` 表示检测到变化数量。 / Refresh failures preserve prior results and appear in the report's `discovery_errors` with `stage: refresh`, making the run partial. `refreshed_this_run` counts successful checks; `changed_this_run` counts detected changes.
+
+每阶段最多检查 `max_items` 个条目，按收录顺序轮转，并保存位置供下次刷新继续。HTTP/token 预算仍有效，变化正文的富化会产生服务费用。`changes.json` 包含全部已记录变化，`evidence.html` 展示差异；导出不包含未变化的检查历史。合并来源记录历史发现出处，不保证这些来源当前正文仍相同。 / Refresh visits at most `max_items` saved items per stage and persists its rotation cursor for subsequent runs. Request and token budgets still apply. Re-enriching changes can incur service costs. `changes.json` includes recorded revisions and `evidence.html` displays diffs. Unchanged check history is not retained as a revision. Merged origins describe historical discovery provenance, not a guarantee that all source bodies still match.
+
+[配置器教程 / Configuration builder](configuration-builder.md)
 
 ## 预算与错误 / Budgets and errors
 

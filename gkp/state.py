@@ -26,6 +26,11 @@ class State:
                 attempts INTEGER NOT NULL DEFAULT 0, error TEXT, retryable INTEGER NOT NULL DEFAULT 1,
                 PRIMARY KEY(record_id, signature)
             );
+            CREATE TABLE IF NOT EXISTS revisions (
+                record_id TEXT NOT NULL, revision INTEGER NOT NULL, changed_at TEXT NOT NULL,
+                old_hash TEXT NOT NULL, new_hash TEXT NOT NULL, old_body TEXT NOT NULL, new_body TEXT NOT NULL,
+                PRIMARY KEY(record_id, revision)
+            );
             CREATE TABLE IF NOT EXISTS checkpoints (key TEXT PRIMARY KEY, value TEXT NOT NULL);
         """)
         existing = self.db.execute("SELECT value FROM settings WHERE key='dataset'").fetchone()
@@ -67,11 +72,27 @@ class State:
 
     def fetched(self, record_id, body, metadata):
         content_hash = digest(" ".join(body.split()))
-        same = self.db.execute("SELECT id FROM records WHERE body_hash=? AND duplicate_of IS NULL AND id!=? ORDER BY rowid LIMIT 1", (content_hash, record_id)).fetchone()
-        duplicate = same["id"] if same else None
+        previous = self.db.execute("SELECT body,body_hash FROM records WHERE id=?", (record_id,)).fetchone()
+        metadata = {**metadata, "checked_at": utc_now()}
         with self.db:
-            self.db.execute("UPDATE records SET body=?,body_hash=?,metadata=?,duplicate_of=?,fetch_error=NULL WHERE id=?",
-                            (body, content_hash, json_text(metadata), duplicate, record_id))
+            if previous["body"] is not None and previous["body_hash"] == content_hash:
+                # Preserve exact excerpts and cached enrichment for whitespace-only changes.
+                body = previous["body"]
+            elif previous["body"] is not None:
+                revision = self.db.execute("SELECT COALESCE(MAX(revision),0)+1 FROM revisions WHERE record_id=?", (record_id,)).fetchone()[0]
+                self.db.execute("INSERT INTO revisions VALUES (?,?,?,?,?,?,?)",
+                                (record_id, revision, metadata["checked_at"], previous["body_hash"], content_hash, previous["body"], body))
+                self.db.execute("DELETE FROM enrichments WHERE record_id=?", (record_id,))
+            self.db.execute("UPDATE records SET body=?,body_hash=?,metadata=?,fetch_error=NULL,fetch_attempts=0,fetch_retryable=1 WHERE id=?",
+                            (body, content_hash, json_text(metadata), record_id))
+            # Recompute representatives so a refreshed primary or duplicate can diverge.
+            representatives = {}
+            for row in self.db.execute("SELECT id,body_hash FROM records ORDER BY rowid").fetchall():
+                duplicate = representatives.get(row["body_hash"]) if row["body_hash"] else None
+                self.db.execute("UPDATE records SET duplicate_of=? WHERE id=?", (duplicate, row["id"]))
+                if row["body_hash"] and duplicate is None:
+                    representatives[row["body_hash"]] = row["id"]
+            duplicate = self.db.execute("SELECT duplicate_of FROM records WHERE id=?", (record_id,)).fetchone()[0]
             if duplicate:
                 primary = self.db.execute("SELECT metadata FROM records WHERE id=?", (duplicate,)).fetchone()
                 merged = json.loads(primary["metadata"])
@@ -80,6 +101,9 @@ class State:
                         merged["sources"].append(origin)
                 self.db.execute("UPDATE records SET metadata=? WHERE id=?", (json_text(merged), duplicate))
         return duplicate
+
+    def changes(self):
+        return [dict(row) for row in self.db.execute("SELECT * FROM revisions ORDER BY changed_at,record_id,revision")]
 
     def fetch_failure(self, record_id, error):
         with self.db:

@@ -38,16 +38,16 @@ def workspace_lock(directory: Path):
         stream.close()
 
 
-def run(config: Config, workspace: Path, *, retry_failed=False, retry_review=False, discover=True):
+def run(config: Config, workspace: Path, *, retry_failed=False, retry_review=False, discover=True, refresh_existing=False):
     with workspace_lock(workspace):
         state = State(workspace / "state.sqlite", config.dataset)
         try:
-            return _run(config, workspace, state, retry_failed, retry_review, discover)
+            return _run(config, workspace, state, retry_failed, retry_review, discover, refresh_existing)
         finally:
             state.close()
 
 
-def _run(config, workspace, state, retry_failed, retry_review, discover):
+def _run(config, workspace, state, retry_failed, retry_review, discover, refresh_existing):
     started = utc_now()
     budget = Budget(config.limits)
     http = HttpClient(budget, offline=config.offline, allow_private=config.data.get("allow_private_network", False),
@@ -97,6 +97,34 @@ def _run(config, workspace, state, retry_failed, retry_review, discover):
                 break
             except PipelineError as error:
                 errors.append({"stage": "discovery", "job": key, "code": error.code, "retryable": error.retryable})
+    refreshed = 0
+    changed = 0
+    if refresh_existing:
+        saved = [row for row in state.records() if row["body"] is not None]
+        cursor = state.checkpoint("refresh:cursor")
+        ids = [row["id"] for row in saved]
+        start = (ids.index(cursor) + 1) % len(ids) if cursor in ids else 0
+        saved = saved[start:] + saved[:start]
+        attempted = 0
+        for original in saved:
+            if attempted >= config.limits["max_items"]:
+                stop_reason = stop_reason or "budget_items"
+                break
+            attempted += 1
+            try:
+                body, metadata = fetcher.body(json.loads(original["metadata"]))
+                changed += int(digest(" ".join(body.split())) != original["body_hash"])
+                state.fetched(original["id"], body, metadata)
+                refreshed += 1
+            except BudgetExceeded as error:
+                stop_reason = error.code
+                break
+            except PipelineError as error:
+                # Keep the last usable body/result when a refresh fails.
+                errors.append({"stage": "refresh", "record_id": original["id"], "code": error.code, "retryable": error.retryable})
+            # Continue at the next URL on the next run. A budget interruption
+            # above leaves the current URL queued rather than skipping it.
+            state.set_checkpoint("refresh:cursor", original["id"])
     processed = 0
     for original in state.records():
         if original["duplicate_of"]:
@@ -136,9 +164,9 @@ def _run(config, workspace, state, retry_failed, retry_review, discover):
             state.enrichment_failure(original["id"], config.signature, error)
     counts = export_records(state, config, workspace / "output")
     status = "paused" if stop_reason else "partial" if errors or counts["failed"] or counts["pending"] else "completed_with_review" if counts["needs_review"] else "completed"
-    report = {"project": "Global Knowledge Crawl Pipeline (by GKN)", "version": "0.1.1", "dataset": config.dataset,
+    report = {"project": "Global Knowledge Crawl Pipeline (by GKN)", "version": "0.2.0", "dataset": config.dataset,
               "started_at": started, "finished_at": utc_now(), "status": status, "stop_reason": stop_reason,
-              "new_candidates": added, "processed_this_run": processed, "counts": counts, "budget": budget.counts,
+              "new_candidates": added, "refreshed_this_run": refreshed, "changed_this_run": changed, "processed_this_run": processed, "counts": counts, "budget": budget.counts,
               "discovery_errors": errors, "offline": config.offline, "template_signature": config.signature,
               "token_accounting": "Conservative input-byte reservation plus output cap; reported usage is provider supplied, not a billing guarantee."}
     write_json(workspace / "output" / "run-report.json", report)

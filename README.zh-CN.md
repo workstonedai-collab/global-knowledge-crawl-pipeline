@@ -50,10 +50,37 @@ runtime/fictional_updates/
     ├── review.json           待复核完整记录
     ├── failures.json         失败记录与安全错误码
     ├── duplicates.json       重复关系与合并依据
+    ├── evidence.html         Fields, quotations and page changes / 字段、摘录与变化
+    ├── changes.json          Detected text revisions / 正文变化历史
     └── run-report.json       本次运行统计与预算
 ```
 
 再次运行相同命令，已保存的富化结果会复用；本次模拟 AI 调用次数为 0。输出采用当前数据集的完整快照写入，不是逐次追加重复行。
+
+## 用浏览器配置自己的信息表
+
+```bash
+python3 -m gkp configure --output runtime/configure.html
+```
+
+打开生成的 HTML 文件，选择产品动态、政策监测或公开研究预设；填写网页、RSS 或列表页网址，以及检索关键词；按需要修改字段。页面会预览列结构，并分别下载 `config.json` 和 `template.json`。将两份文件放在同一个目录，然后按页面给出的指引设置自己的服务和环境变量。
+
+配置器只生成文件，实际采集和富化由命令行执行。页面不收集密钥、不向外部服务发送内容，也不会替你接通不兼容的 API。复杂接口映射仍可按 [适配器说明](docs/adapters.md) 修改。
+
+[详细配置器教程](docs/configuration-builder.md) · [三种可运行的离线场景](examples/README.md)
+
+## 查看证据与追踪更新
+
+运行后打开 `runtime/<dataset>/output/evidence.html`，在同一页查看字段值、引用摘录、原文、复核原因和正文变化。无需另起服务器。示例结果包含一条待复核记录，便于了解证据不足时的处理方式。
+
+```bash
+# 只检查已经收录的网址，并仅对变化正文重新富化
+python3 -m gkp run examples/demo.json --no-discovery --refresh-existing
+```
+
+默认运行继续复用已保存的正文。开启刷新会产生新的抓取请求；未变化的正文复用富化缓存，变化的正文重新富化并写入 `changes.json`。刷新失败保留旧结果，报告本次失败。变化日志保存已采集文本的历史，数据仍留在忽略的运行目录中。
+
+如果旧网址超过条目预算，程序保留轮转位置，下次刷新继续检查后续网址，避免一直只检查前面几条。抓取到相同正文的记录仍合并；若后来正文不同，将重新成为独立记录。
 
 ## 安装为命令
 
@@ -147,7 +174,7 @@ python3 -m gkp export examples/demo.json --workspace runtime/my-demo
 - 普通 HTML、RSS/Atom 与列表页支持是基础能力；不保证自动适配所有网站。
 - 列表页按链接和可选 URL 正则发现文章，默认不跟随外站链接；暂不支持通用分页。
 - 去重依据规范化 URL 或相同正文；不做跨语言语义去重，不自动删除近似改写报道。
-- 已保存 URL 的正文不会自动重抓，适合持续发现新链接；既有页面的内容变更检测待后续扩展。
+- 已保存 URL 默认复用正文；用 `--refresh-existing` 显式检查同址更新，比较规范化后的文本，不比较 DOM、图片或排版。
 - 浏览器适配器为可选路径；当前验收覆盖标准 HTML 和本机模拟 HTTP API，没有验证任意实际动态网站。
 - 不支持 PDF、登录内容、付费墙绕过、复杂工作簿回填或多机分布式任务。
 - 默认遵守 robots.txt；robots 规则不能代替内容授权。实际来源仍需自行确认使用条件。

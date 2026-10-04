@@ -1,0 +1,26 @@
+{
+  "https://example.com/notices/trial": {
+    "fields": {
+      "issuing_body": "Fictional Civic Office",
+      "effective_date": "2026-11-01（拟议试点开始日）",
+      "affected_groups": [
+        "自愿参与的通勤者"
+      ],
+      "summary": "虚构公共事务办公室提出交通试点，拟于2026-11-01开始；仅面向自愿通勤者，尚未成为正式规定。"
+    },
+    "evidence": {
+      "issuing_body": [
+        "The Fictional Civic Office"
+      ],
+      "effective_date": [
+        "trial starting on 2026-11-01"
+      ],
+      "affected_groups": [
+        "volunteer commuters only"
+      ],
+      "summary": [
+        "is not an enacted rule"
+      ]
+    }
+  }
+}

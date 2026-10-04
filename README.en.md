@@ -50,10 +50,37 @@ runtime/fictional_updates/
     ├── review.json           Complete records needing review
     ├── failures.json         Failed records and safe error codes
     ├── duplicates.json       Duplicate relationships and reasons
+    ├── evidence.html         Fields, quotations and page changes / 字段、摘录与变化
+    ├── changes.json          Detected text revisions / 正文变化历史
     └── run-report.json       Run statistics and budgets
 ```
 
 Run the same command again to reuse saved enrichment results. The second run makes zero simulated AI calls. Exports replace the current dataset snapshot; they do not append duplicate rows on every run.
+
+## Configure your table in a browser
+
+```bash
+python3 -m gkp configure --output runtime/configure.html
+```
+
+Open the generated HTML file. Choose the product, policy or public-research preset, supply website, RSS or listing URLs and search keywords, and adjust the fields. The page previews the column structure and downloads `config.json` and `template.json` separately. Keep both files in the same directory, then follow the page instructions to configure your service and environment credentials.
+
+The builder generates files; the CLI performs collection and enrichment. The page asks for no keys and sends no content to services. Advanced API mappings remain configurable through the [adapter guide](docs/adapters.md).
+
+[Builder walkthrough](docs/configuration-builder.md) · [Three runnable offline scenarios](examples/README.md)
+
+## Review evidence and track updates
+
+After a run, open `runtime/<dataset>/output/evidence.html` to see field values, quotations, collected text, review reasons and text changes together. No server is required. The demo includes a review record to show what happens when evidence is insufficient.
+
+```bash
+# Revisit saved URLs and enrich only changed text
+python3 -m gkp run examples/demo.json --no-discovery --refresh-existing
+```
+
+Default runs reuse stored text. Refreshing makes new fetch requests. Unchanged text retains enrichment; changed text triggers enrichment and records its previous/new text in `changes.json`. A failed refresh retains the previous result and reports the new error. History is stored in the ignored runtime directory.
+
+When saved URLs exceed the item budget, a persistent rotation cursor continues with later URLs on the next refresh. Identical bodies are still merged, and a duplicate whose body later differs becomes an independent record.
 
 ## Install the command
 
@@ -145,7 +172,7 @@ Exit codes: `0` completed, possibly with review items; `1` configuration or loca
 - Basic HTML, RSS/Atom, and listing-link discovery are supported; automatic compatibility with every website is not promised.
 - Listings use links and an optional URL regex. External links are excluded by default. General pagination is not implemented.
 - Deduplication uses canonical URLs or identical bodies. There is no multilingual semantic deduplication or automatic removal of approximate rewrites.
-- Previously stored URLs are not automatically refetched. The current workflow discovers new links; change detection at existing URLs is a future extension.
+- Stored URLs are refetched only with `--refresh-existing`. Change detection compares normalized extracted text, not DOM, images or layout.
 - Browser rendering is optional. Current acceptance covers standard HTML and local mock APIs, not arbitrary dynamic production websites.
 - PDFs, authenticated pages, paywall bypass, complex workbook filling, and distributed jobs are outside this release.
 - robots.txt is respected by default; it does not substitute for permission to use the content.
