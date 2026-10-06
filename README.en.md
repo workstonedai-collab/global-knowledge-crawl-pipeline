@@ -15,6 +15,21 @@ Use it for product developments, public policy, industry updates, or research ma
 
 This release is a standalone command-line project for individuals and small teams. Its stage boundaries and recovery approach draw on GKN workflow experience. The general implementation uses independent code, fictional fixtures, and a separate repository boundary.
 
+## Watch the case, then make your first table
+
+![Actual offline case, compact 2× preview](docs/demo.gif)
+
+[Full video](docs/demo.mp4) · [Five-minute walkthrough](docs/walkthrough.en.md) · [中文教程](docs/walkthrough.zh-CN.md)
+
+The recording follows actual fictional-case output: sources and fields → table → evidence and review reasons → saved-result reuse. It makes no real search or AI calls. Long navigation waits are removed.
+
+```bash
+python3 examples/make_walkthrough.py
+# Open runtime/visual-demo/output/walkthrough.html
+```
+
+The helper actually runs the example twice and builds a browser overview from exported CSV and reports. It preserves existing workspaces; use a new `--workspace` to repeat the exercise.
+
 ## What you can do
 
 - **Combine discovery channels:** direct URLs, RSS/Atom feeds, links from listing pages, and keyword searches share a candidate pool.

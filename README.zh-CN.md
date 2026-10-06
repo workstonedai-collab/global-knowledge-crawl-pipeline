@@ -15,6 +15,21 @@
 
 当前版本是可独立运行的命令行项目，面向个人和小团队。源于 GKN 工作流的阶段划分与恢复经验，通用实现使用独立代码、虚构样例和新的仓库边界。
 
+## 先看案例，再获得第一张表
+
+![实际离线案例，2 倍速预览](docs/demo.gif)
+
+[完整视频](docs/demo.mp4) · [约五分钟案例教程](docs/walkthrough.zh-CN.md) · [English walkthrough](docs/walkthrough.en.md)
+
+视频展示自带虚构案例的真实产物：来源与字段 → 信息表 → 证据和待复核原因 → 再次运行复用结果。不请求真实搜索或 AI，较长导航等待已剪除。
+
+```bash
+python3 examples/make_walkthrough.py
+# 打开 runtime/visual-demo/output/walkthrough.html
+```
+
+辅助脚本实际运行两次示例，并从导出的 CSV 与报告生成浏览器概览。已有工作目录非空时会停止保护状态；换一个 `--workspace` 即可重新体验。
+
 ## 你可以做什么
 
 - **组合发现渠道**：网页 URL、RSS/Atom、列表页链接和关键词搜索可以进入同一个候选池。

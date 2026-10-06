@@ -1,0 +1,39 @@
+1
+00:00:00,000 --> 00:00:05,000
+Offline walkthrough · fictional sources and preset enrichment
+离线案例：虚构来源与预设富化；不调用真实搜索或 AI
+
+2
+00:00:05,000 --> 00:00:10,000
+Listing + RSS + keyword search → your field template
+列表页、RSS、模拟检索 → 自定义字段
+
+3
+00:00:10,000 --> 00:00:15,000
+The included configuration defines sources and services
+查看实际示例配置；演示使用本地 fixture
+
+4
+00:00:15,000 --> 00:00:22,000
+4 candidates → 3 records · 1 duplicate · 1 needs review
+4 个候选 → 3 条记录；1 条重复、1 条待复核
+
+5
+00:00:22,000 --> 00:00:28,000
+Compare extracted fields with source quotations
+将提取字段与原文摘录对照
+
+6
+00:00:28,000 --> 00:00:35,000
+Missing summary → needs_review, with a reason
+缺少必填摘要 → 待复核，并保留原因
+
+7
+00:00:35,000 --> 00:00:41,000
+Second run: 0 fixture enrichment calls · 0 HTTP requests
+再次运行：0 次模拟富化、0 次 HTTP 请求
+
+8
+00:00:41,000 --> 00:00:43,690
+Run the same example locally · bring your own APIs for live use
+可在本地复现；实际采集请接入自己的来源与 API

@@ -10,6 +10,12 @@
 
 打开 `runtime/<dataset>/output/evidence.html` 对照字段与原文。重复运行应复用富化结果。 / Open `runtime/<dataset>/output/evidence.html` to compare fields with source text. Repeated runs reuse enrichment.
 
+## 可视化入门 / Visual walkthrough
+
+运行 `python3 examples/make_walkthrough.py`，然后在浏览器打开 `runtime/visual-demo/output/walkthrough.html`。脚本实际运行产品示例两次，展示信息表、来源证据、待复核原因与复用统计；不需要密钥。工作目录非空时，请用 `--workspace runtime/visual-demo-2` 选择新目录。 / Run the helper and open the generated page. It runs the product case twice and displays the table, evidence, review reason and reuse counters without credentials. Choose a new workspace if the default is not empty.
+
+[中文逐步教程与演示](../docs/walkthrough.zh-CN.md) · [English tutorial and demo](../docs/walkthrough.en.md)
+
 ## 体验同址更新 / Try an update at the same URL
 
 1. 先运行产品示例。 / Run the product demo.

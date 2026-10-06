@@ -21,6 +21,19 @@ If you are not familiar with programming, you can give this project to your AI a
 
 Python 3.9+ · 离线示例无需依赖或密钥 / Offline demo needs no dependencies or keys · v0.2.0
 
+## 看一遍，再自己跑通 / Watch, then reproduce
+
+![Actual offline case · 2× preview / 实际离线案例，2 倍速](docs/demo.gif)
+
+[完整视频 / Full video](docs/demo.mp4) · [中文案例教程](docs/walkthrough.zh-CN.md) · [English walkthrough](docs/walkthrough.en.md)
+
+从来源与字段到信息表、证据页和结果复用。视频展示真实运行的虚构离线案例：不请求真实搜索或 AI，长导航等待已剪除。 / Follow sources and fields through the table, evidence and saved-result reuse. This is an actual run of fictional offline fixtures, with no real search or AI calls; long navigation waits are removed.
+
+```bash
+python3 examples/make_walkthrough.py
+# 打开 / Open: runtime/visual-demo/output/walkthrough.html
+```
+
 ## 新增：更快配置，更容易复核 / New: configure faster, review clearly
 
 - **本地配置器 / Local configuration builder**：在浏览器中选来源、关键词和字段，下载配置与模板。无需先手写 JSON。 / Choose sources, keywords and fields in a browser and download your configuration and schema.
