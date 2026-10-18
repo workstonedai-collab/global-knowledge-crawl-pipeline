@@ -107,6 +107,8 @@ def export_records(state, config, directory: Path):
     write_json(directory / "review.json", [record for record in records if record["status"] == "needs_review"])
     write_json(directory / "failures.json", [{"id": record["id"], "url": record["metadata"]["url"], "issues": record["issues"]} for record in records if record["status"] == "failed"])
     write_json(directory / "duplicates.json", duplicates)
+    from .receipts import text_receipt
+    write_json(directory / "source-receipts.json", [text_receipt(record["id"], record["body"], record["metadata"]) for record in records])
     changes = state.changes()
     write_json(directory / "changes.json", changes)
     from .preview import evidence_report

@@ -164,7 +164,7 @@ def _run(config, workspace, state, retry_failed, retry_review, discover, refresh
             state.enrichment_failure(original["id"], config.signature, error)
     counts = export_records(state, config, workspace / "output")
     status = "paused" if stop_reason else "partial" if errors or counts["failed"] or counts["pending"] else "completed_with_review" if counts["needs_review"] else "completed"
-    report = {"project": "Global Knowledge Crawl Pipeline (by GKN)", "version": "0.2.0", "dataset": config.dataset,
+    report = {"project": "Global Knowledge Crawl Pipeline", "version": "0.2.0", "dataset": config.dataset,
               "started_at": started, "finished_at": utc_now(), "status": status, "stop_reason": stop_reason,
               "new_candidates": added, "refreshed_this_run": refreshed, "changed_this_run": changed, "processed_this_run": processed, "counts": counts, "budget": budget.counts,
               "discovery_errors": errors, "offline": config.offline, "template_signature": config.signature,

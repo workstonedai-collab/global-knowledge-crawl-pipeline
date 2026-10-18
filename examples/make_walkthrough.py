@@ -65,7 +65,7 @@ pre{white-space:pre-wrap;word-break:break-word;background:#eff4f7;padding:18px;b
 </style></head><body><main>
 <span class="tag">OFFLINE DEMO / 离线演示</span>
 <h1>Web &amp; search → your information table<br><small>网页与搜索 → 自定义信息表</small></h1>
-<p>Global Knowledge Crawl Pipeline (by GKN)</p>
+<p>Global Knowledge Crawl Pipeline</p>
 <p class="note">Fictional sources and preset enrichment. No real search or AI calls.<br>来源和富化结果均为虚构；不请求真实搜索或 AI。下方结果来自程序实际运行。</p>
 <nav><a href="#input">1. Inputs / 输入</a><a href="#results">2. Results / 结果</a><a href="evidence.html">3. Evidence / 证据</a><a href="#resume">4. Reuse / 复用</a></nav>
 <section id="input"><h2>1. Sources + fields / 来源与字段</h2>

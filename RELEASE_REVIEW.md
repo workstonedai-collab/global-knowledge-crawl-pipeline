@@ -12,7 +12,7 @@ Use it as part of an automated information monitoring workflow to track and coll
 
 If you are not familiar with programming, you can give this project to your AI agent and ask it to deploy the program for you. Follow your agent's guidance to provide website URLs, search keywords, API credentials, and other configuration needed to run it.
 
-项目 / Project: **Global Knowledge Crawl Pipeline (by GKN)｜GKN全球信息采集程序**
+项目 / Project: **Global Knowledge Crawl Pipeline｜全球信息采集程序**
 
 版本 / Version: **0.1.1**
 
@@ -22,11 +22,11 @@ If you are not familiar with programming, you can give this project to your AI a
 
 ## 0.1.1 名称更新 / Naming update
 
-项目统一更名为 **Global Knowledge Crawl Pipeline (by GKN)**；仓库与安装包名称为 `global-knowledge-crawl-pipeline`。命令仍为 `gkp`，中文名仍为 GKN全球信息采集程序，处理功能不变。v0.1.0 的下载包保留为历史版本。 / The project is now **Global Knowledge Crawl Pipeline (by GKN)**, with repository and distribution name `global-knowledge-crawl-pipeline`. The `gkp` command and Chinese name remain the same; processing behavior is unchanged. v0.1.0 assets remain historical releases.
+项目统一更名为 **Global Knowledge Crawl Pipeline**；仓库与安装包名称为 `global-knowledge-crawl-pipeline`。命令仍为 `gkp`，中文名仍为 全球信息采集程序，处理功能不变。v0.1.0 的下载包保留为历史版本。 / The project is now **Global Knowledge Crawl Pipeline**, with repository and distribution name `global-knowledge-crawl-pipeline`. The `gkp` command and Chinese name remain the same; processing behavior is unchanged. v0.1.0 assets remain historical releases.
 
 ## 仓库主页介绍 / About description
 
-GKN全球信息采集程序：简易好用的网页栏目爬取与关键词检索工具，可接深度搜索和AI摘要、研判、标签API，融入自动化追踪，也可交给agent部署。 Global Knowledge Crawl Pipeline (by GKN): track web listings and keyword searches, connect deep-search and AI APIs for summaries, analysis and tags, automate information intake, and let your agent help deploy it.
+全球信息采集程序：简易好用的网页栏目爬取与关键词检索工具，可接深度搜索和AI摘要、研判、标签API，融入自动化追踪，也可交给agent部署。 Global Knowledge Crawl Pipeline: track web listings and keyword searches, connect deep-search and AI APIs for summaries, analysis and tags, automate information intake, and let your agent help deploy it.
 
 建议主题 / Suggested topics: `information-extraction`, `web-scraping`, `rss`, `keyword-search`, `data-pipeline`, `ai`, `structured-data`, `python`, `csv`, `excel`.
 

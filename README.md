@@ -1,5 +1,8 @@
-# Global Knowledge Crawl Pipeline (by GKN)
-# GKN全球信息采集程序
+# Global Knowledge Crawl Pipeline
+
+新增精确正文回执，使用说明见 [中文](README.zh-CN.md) / [English](README.en.md)。
+New: exact retained-text receipts, distinct from normalized deduplication hashes.
+# 全球信息采集程序
 
 这是一个简易但好用的网络信息追踪/爬取程序，既支持爬取给定的网址栏目链接，也支持根据给定的关键词自动进行互联网检索并爬取相应信息，爬取后支持接入额外API对信息写摘要、研判、打标签，检索也支持接入深度搜索类的API。
 
@@ -23,9 +26,9 @@ Python 3.9+ · 离线示例无需依赖或密钥 / Offline demo needs no depende
 
 ## 看一遍，再自己跑通 / Watch, then reproduce
 
-![Actual offline case · 2× preview / 实际离线案例，2 倍速](docs/demo.gif)
+![Actual offline output / 实际离线输出](docs/walkthrough-table.png)
 
-[完整视频 / Full video](docs/demo.mp4) · [中文案例教程](docs/walkthrough.zh-CN.md) · [English walkthrough](docs/walkthrough.en.md)
+[完整视频 / Full video](docs/demo.webm) · [中文案例教程](docs/walkthrough.zh-CN.md) · [English walkthrough](docs/walkthrough.en.md)
 
 从来源与字段到信息表、证据页和结果复用。视频展示真实运行的虚构离线案例：不请求真实搜索或 AI，长导航等待已剪除。 / Follow sources and fields through the table, evidence and saved-result reuse. This is an actual run of fictional offline fixtures, with no real search or AI calls; long navigation waits are removed.
 
