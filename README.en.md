@@ -1,5 +1,12 @@
-# Global Knowledge Crawl Pipeline (by GKN)
-# GKN全球信息采集程序
+# Global Knowledge Crawl Pipeline
+
+Exports now include `source-receipts.json`, joinable to `records.jsonl` by record
+ID. Receipts hash the exact retained UTF-8 body, separately from normalized dedupe
+hashes, and record its byte count and last `checked_at`. They do not invent fetch
+times or include full text, URL credentials, query strings or fragments. Paths
+can still be sensitive. A receipt identifies bytes, not source truth or reading
+completeness. Use the source reader's own coverage alongside this receipt.
+# 全球信息采集程序
 
 Global Knowledge Crawl Pipeline is a simple but useful tool for tracking and crawling information on the web. It can crawl the website section or listing URLs you provide, or automatically search the internet using your keywords and collect the information it finds. After collection, you can connect additional APIs to generate summaries, analyze the information, and add tags. Search can also connect to deep-search APIs.
 
@@ -13,13 +20,13 @@ Keeping an information table up to date often means repeatedly visiting sites, s
 
 Use it for product developments, public policy, industry updates, or research material. A product template might collect a title, organization, update category, and summary. A policy template could collect the issuing body, effective date, affected groups, and policy summary.
 
-This release is a standalone command-line project for individuals and small teams. Its stage boundaries and recovery approach draw on GKN workflow experience. The general implementation uses independent code, fictional fixtures, and a separate repository boundary.
+This release is a standalone command-line project for individuals and small teams. Its stage boundaries and recovery approach come from staged information-intake workflows. The general implementation uses independent code, fictional fixtures, and a separate repository boundary.
 
 ## Watch the case, then make your first table
 
-![Actual offline case, compact 2× preview](docs/demo.gif)
+![Actual offline output](docs/walkthrough-table.png)
 
-[Full video](docs/demo.mp4) · [Five-minute walkthrough](docs/walkthrough.en.md) · [中文教程](docs/walkthrough.zh-CN.md)
+[Full video](docs/demo.webm) · [Five-minute walkthrough](docs/walkthrough.en.md) · [中文教程](docs/walkthrough.zh-CN.md)
 
 The recording follows actual fictional-case output: sources and fields → table → evidence and review reasons → saved-result reuse. It makes no real search or AI calls. Long navigation waits are removed.
 

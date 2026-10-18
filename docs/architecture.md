@@ -32,4 +32,4 @@ flowchart TD
 
 SQLite 每个阶段提交保证已保存结果的恢复，不提供跨远端 API 与本地数据库的事务。多个 workspace 可以独立运行，一个 workspace 使用进程锁。 / Stage commits provide recovery of saved results, not a distributed transaction across a remote API and SQLite. Workspaces are independent; one workspace is locked during a run.
 
-项目实现与 GKN 的正式运行、业务评分、真实来源清单、密钥和网站发布分离。这里只公开通用代码及自行编写的虚构样例。 / The implementation is separate from GKN production operations, business scoring, real source registries, credentials, and website publication. Only generic code and self-authored fictional fixtures belong here.
+项目实现与 正式业务运行、业务评分、真实来源清单、密钥和网站发布分离。这里只公开通用代码及自行编写的虚构样例。 / The implementation is separate from production operations, business scoring, real source registries, credentials, and website publication. Only generic code and self-authored fictional fixtures belong here.
